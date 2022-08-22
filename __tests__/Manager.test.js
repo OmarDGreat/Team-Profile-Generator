@@ -1,5 +1,4 @@
-const Manager = require('../src/Manager');
-const Employee = require('../src/Employee');
+const Manager = require("../lib/Manager");
 
 test("Can set office number via constrictor argument", () => {
     const testValue = 100;
