@@ -63,40 +63,59 @@ const generateTeam = team => {
     `;
     };
 
-};
+        //loop through the team array and create the html for each employee
+    const html = [];
 
-    module.exports = team => {
-        return `
-    <!DOCTYPE html>
-    <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <title>Team Generator</title>
-    </head>
-    
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h1 class="card-title">Team Generator</h1>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                ${generateTeam(team)}
-                            </div>
+    html.push(team
+        .filter(employee => employee.getRole() === "Manager")
+        .map(employee => generateManager(employee))
+    );
+    html.push(team
+        .filter(employee => employee.getRole() === "Engineer")
+        .map(employee => generateEngineer(employee))
+    );
+    html.push(team
+        .filter(employee => employee.getRole() === "Intern")
+        .map(employee => generateIntern(employee))
+    );
+
+    return html.join("");
+
+}
+
+
+module.exports = team => {
+    return `
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Team Generator</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title">Team Generator</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            ${generateTeam(team)}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
-    
-    </html>
-        `;
-    }
+    </div>
+</body>
+
+</html>
+    `;
+}

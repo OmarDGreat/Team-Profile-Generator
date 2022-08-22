@@ -110,8 +110,12 @@ promptQuestions();
 function createTeam() {
     console.log("new guy", newStaffData);
     fs.writeFile(
-        "./output/team.html",
+        "./dist/team.html",
         generateTeam(newStaffData),
-        "utf-8"
+        err => {
+            if (err) {
+                console.log(err);
+            }
+        }
     );
 }
