@@ -6,3 +6,4 @@ Tutorial: https://watch.screencastify.com/v/oMeqilUocuIBZ31A0I9G
 
 # Description: This program generates a team of employees based on input given using Inquirer and Jest as dependinces 
 
+Credit to GregPetropoulos; Youtube video: https://www.youtube.com/watch?v=soKo5LzN12w&ab_channel=GP
