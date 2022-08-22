@@ -98,10 +98,12 @@ async function promptQuestions() {
         }
     ])
 
-    if (addMemberAns === "Add another member"){
+    if (addMemberAns.addMember === "Add another member"){
         return promptQuestions();
     }
+    else {
     return createTeam();
+    }
 
 }
 
