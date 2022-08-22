@@ -1,5 +1,4 @@
 // node modules
-
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateTeam = require("./lib/generateTeam");
@@ -84,4 +83,35 @@ const questions = async () => {
         );
         newStaffData.push(new Intern(answer.name, answer.id, answer.email, school.school));
     }
+}; //end of questions
+
+async function promptQuestions() {
+    await questions()
+
+    const addMemberAns = await inquirer
+    .prompt([
+        {
+            name: "addMember",
+            type: "list",
+            choices: ["Add another member", "Generate Team"],
+            message: "What would you like to do next?"
+        }
+    ])
+
+    if (addMemberAns === "Add another member"){
+        return promptQuestions();
+    }
+    return createTeam();
+
+}
+
+promptQuestions();
+
+function createTeam() {
+    console.log("new guy", newStaffData);
+    fs.writeFile(
+        "./output/team.html",
+        generateTeam(newStaffData),
+        "utf-8"
+    );
 }
